@@ -78,14 +78,14 @@ app.use(express.json())
 app.use(cookieParser());
 
 // Enforce HTTPS in production
-if (process.env.NODE_ENV === 'production') {
-  app.use((req, res, next) => {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(`https://${req.headers.host}${req.url}`);
-    }
-    next();
-  });
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use((req, res, next) => {
+//     if (req.headers['x-forwarded-proto'] !== 'https') {
+//       return res.redirect(`https://${req.headers.host}${req.url}`);
+//     }
+//     next();
+//   });
+// }
 
 // Method override from: https://www.npmjs.com/package/method-override
 app.use(methodOverride(function (req, res) {

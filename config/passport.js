@@ -5,9 +5,6 @@ const GoogleTokenStrategy = require('passport-google-token').Strategy; // Import
 const mongoose = require('mongoose');
 const db = require('../models');
 const User = db.User;
-// const User = require('../models/User');
-const { OAuth2Client } = require('google-auth-library');
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 module.exports = function (passport) {
   passport.use(
@@ -15,7 +12,7 @@ module.exports = function (passport) {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,             
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: 'https://p2-web-services-w4.onrender.com/auth/google/callback',      
+        callbackURL: '/auth/google/callback',      
         // passReqToCallback: true, // Allow req to be passed to the verify callback
         failureRedirect: '/dashboard?accessDenied=true', // Redirect with error flag
       },
@@ -68,7 +65,7 @@ module.exports = function (passport) {
       {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: 'https://p2-web-services-w4.onrender.com/auth/github/callback', // Default callback, to be overridden in the route      
+        callbackURL: '/auth/github/callback', // Default callback, to be overridden in the route      
         // passReqToCallback: true, // Allow req to be passed to the verify callback
         failureRedirect: '/dashboard?accessDenied=true', // Redirect with error flag
       },
