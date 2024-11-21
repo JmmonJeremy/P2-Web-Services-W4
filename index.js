@@ -128,7 +128,13 @@ app.use(session({
 // console.log('Initializing Passport middleware...');
 app.use(passport.initialize());
 app.use(passport.session());
-console.log("INDEX-Session: "+ req.session);
+
+// This will log the session information for every incoming request to the root route.
+app.use((req, res, next) => {
+  console.log("INDEX-Session: ", req.session);
+  next(); // Call next middleware or route handler
+});
+
 // Middleware to save accessToken to session
 app.use((req, res, next) => {
   if (req.user) {
