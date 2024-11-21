@@ -134,6 +134,7 @@ app.use((req, res, next) => {
   if (req.user) {
     req.accessToken = req.user.accessToken;
     req.user = req.user.user; // redefine req.user to only contain the user object
+    console.log("INDEX-Session: "+ req.session);
   }
   next();
 });
