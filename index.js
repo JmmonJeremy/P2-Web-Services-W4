@@ -128,7 +128,7 @@ app.use(session({
 // console.log('Initializing Passport middleware...');
 app.use(passport.initialize());
 app.use(passport.session());
-
+console.log("INDEX-Session: "+ req.session);
 // Middleware to save accessToken to session
 app.use((req, res, next) => {
   if (req.user) {
