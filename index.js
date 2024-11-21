@@ -115,11 +115,10 @@ app.use(session({
   saveUninitialized: false,
   // from https://www.npmjs.com/package/connect-mongo
   store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
-  cookie: {
-    domain: 'p2-web-services-w4.onrender.com',
+  cookie: {   
     secure: process.env.NODE_ENV === 'production', // Ensure cookies are only sent over HTTPS in production
     httpOnly: true,  // Prevents access to the cookie via JavaScript (XSS protection)
-    sameSite: 'none',
+    // sameSite: 'none',
     maxAge: 24 * 60 * 60 * 1000 // 1 day (adjust if needed)
   } 
 }));
