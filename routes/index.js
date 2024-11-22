@@ -14,13 +14,7 @@ const oauthCallback = require('./oauth-callback'); //github oauth
 // google auth BASE/HOME/PAGE
 //  @desc   Login/Landing page
 //  @route  GET /
-// routes.get('/', ensureGuest, home.grantAccess);
-
-routes.get('/', ensureGuest, (req, res) => {
-  res.render('login', {
-    layout: 'login',
-  })
-})
+routes.get('/', ensureGuest, home.grantAccess);
 
 // routes.use('/', oauth); //github oauth
 // routes.use('/', oauthCallback); //github oauth

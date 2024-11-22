@@ -112,7 +112,7 @@ connectDB(); // google auth database add-on database connection
 app.use(session({
   secret: 'victory-planner',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   // from https://www.npmjs.com/package/connect-mongo
   store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
   cookie: {   

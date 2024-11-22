@@ -4,15 +4,6 @@ const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const CircularJSON = require('circular-json');
 
-// module.exports = {
-//   ensureAuth: function (req, res, next) {
-//     if (req.isAuthenticated()) {
-//       return next()
-//     } else {
-//       res.redirect('/')
-//     }
-//   },
-
 module.exports = {
   ensureAuth: function (req, res, next) {
     // console.log("res.query: " + CircularJSON.stringify(res, null, 2));
