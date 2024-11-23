@@ -67,7 +67,7 @@ routes.get(
   '/google/callback', auth.checkGoogleCode, 
     // // show what is in the request body for authentication
     // (req, res, next) => {
-    //   console.log('Request body:', req.body);   // this is empty here
+    // console.log('Google Request body:', req.body);  // this is empty here
     //   next(); // Pass control to the next middleware
     // },
     (req, res, next) => {
@@ -76,7 +76,7 @@ routes.get(
       // console.log('FROM GOOGLE CB- Set-Cookie header:', res.get('Set-Cookie')); // Check if the session cookie is in the response headers
       passport.authenticate('google', 
         (err, user, info) => {
-          console.log('Google Request body:', req.body); 
+          // console.log('Google Request body:', req.body);  // this is empty here
           if (err) {
             console.error('Error during authentication:', err);
             return next(err);
@@ -95,6 +95,7 @@ routes.get(
               console.error('Error during login:', loginErr);
               return next(loginErr);
             }
+            console.log('Google Request body:', req.body); 
             // console.log('User successfully logged in:', user);
             // Redirect to the desired page after successful login
             return res.status(200).redirect('/dashboard');
@@ -124,7 +125,7 @@ routes.get(
   '/github/callback', auth.checkGithubCode, 
     // // show what is in the request body for authentication
     // (req, res, next) => {
-    //   console.log('GitHub Request body:', req.body);   
+    //   console.log('GitHub Request body:', req.body);  // this is empty here
     //   next(); // Pass control to the next middleware
     // },
     (req, res, next) => {
@@ -134,7 +135,7 @@ routes.get(
     // console.log('FROM GITHUB CB- Set-Cookie header:', res.get('Set-Cookie')); // Check if the session cookie is in the response headers
     passport.authenticate('github',  
       (err, user, info) => {
-        
+        //   console.log('GitHub Request body:', req.body);  // this is empty here
         if (err) {
           console.error('Error during authentication:', err);
           return next(err);
@@ -153,6 +154,7 @@ routes.get(
             console.error('Error during login:', loginErr);
             return next(loginErr);
           }
+          console.log('GitHub Request body:', req.body); 
           // console.log('User successfully logged in:', user);
           // Redirect to the desired page after successful login
           return res.status(200).redirect('/dashboard');
