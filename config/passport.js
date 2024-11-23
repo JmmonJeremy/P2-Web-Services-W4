@@ -54,7 +54,7 @@ module.exports = function (passport) {
       },
       async (req, accessToken, refreshToken, profile, done) => {
         console.log("GOOGLE Access Token:" + accessToken + 
-          "\n Google Request body: " + req.body);
+          "\n Google Request body: " + JSON.stringify(req.body, null, 2));
 
         // const absoluteCallbackURL = `${req.protocol}://${req.get('host')}/auth/google/callback`;
         // console.log("Absolute Callback URL for Google:", absoluteCallbackURL);        
@@ -108,7 +108,7 @@ module.exports = function (passport) {
       },      
       async (req, accessToken, refreshToken, profile, done) => {
         console.log("GITHUB Access Token:" + accessToken + 
-          "\n Google Request body: " + JSON.stringify(req.body));
+          "\n GitHub Request body: " + JSON.stringify(req.body, null, 2));
         
         // console.log("PASSPORT-Session: ", req.session);
          
