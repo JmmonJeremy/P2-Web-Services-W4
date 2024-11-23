@@ -3,6 +3,7 @@ const profile = require('./profile');
 const users = require('./user');
 const swagger = require('./swagger');
 const static = require('./static');
+const register = require('./register');
 const auth = require('./auth'); // google auth 
 const dashboard = require('./dashboard'); // google auth 
 const creationGoals = require('./creationGoals'); // google auth 
@@ -22,6 +23,7 @@ routes.use('/', static);
 routes.use('/', swagger);
 routes.use('/profiles', profile);
 routes.use('/user', users);
+routes.use('/register', register);
 routes.use('/auth', auth);  // google auth - put here instead of in root/index.js
 routes.use('/dashboard', dashboard);  // google auth - put here instead of in root/index.js
 routes.use('/creationGoals', creationGoals);  // google auth - put here instead of in root/index.js
