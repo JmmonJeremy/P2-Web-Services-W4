@@ -95,7 +95,7 @@ routes.get(
               console.error('Error during login:', loginErr);
               return next(loginErr);
             }
-            console.log('Google Request body:', req.body); 
+            // console.log('Google Request body:', req.body);   // this is empty here
             // console.log('User successfully logged in:', user);
             // Redirect to the desired page after successful login
             return res.status(200).redirect('/dashboard');
@@ -154,7 +154,7 @@ routes.get(
             console.error('Error during login:', loginErr);
             return next(loginErr);
           }
-          console.log('GitHub Request body:', req.body); 
+          // console.log('GitHub Request body:', req.body);  // this is empty here 
           // console.log('User successfully logged in:', user);
           // Redirect to the desired page after successful login
           return res.status(200).redirect('/dashboard');

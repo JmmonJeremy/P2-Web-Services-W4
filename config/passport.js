@@ -49,11 +49,12 @@ module.exports = function (passport) {
         clientID: process.env.GOOGLE_CLIENT_ID,             
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/callback',      
-        // passReqToCallback: true, // Allow req to be passed to the verify callback
+        passReqToCallback: true, // Allow req to be passed to the verify callback
         failureRedirect: '/dashboard?accessDenied=true', // Redirect with error flag
       },
       async (req, accessToken, refreshToken, profile, done) => {
-        console.log("GOOGLE Access Token:", accessToken);
+        console.log("GOOGLE Access Token:" + accessToken + 
+          "\n Google Request body: " + req.body);
 
         // const absoluteCallbackURL = `${req.protocol}://${req.get('host')}/auth/google/callback`;
         // console.log("Absolute Callback URL for Google:", absoluteCallbackURL);        
@@ -106,7 +107,8 @@ module.exports = function (passport) {
         failureRedirect: '/dashboard?accessDenied=true', // Redirect with error flag
       },      
       async (req, accessToken, refreshToken, profile, done) => {
-        console.log("GITHUB Access Token:", accessToken);
+        console.log("GITHUB Access Token:" + accessToken + 
+          "\n Google Request body: " + req.body);
         
         // console.log("PASSPORT-Session: ", req.session);
          
