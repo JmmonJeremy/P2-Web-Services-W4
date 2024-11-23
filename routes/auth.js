@@ -63,10 +63,10 @@ routes.get(
   // #swagger.ignore = true
   // don't send to swagger docs it is not funtional by itself
   '/google/callback', auth.checkGoogleCode, 
-    (req, res, next) => {
-      console.log('Request body:', req.body);   
-      next(); // Pass control to the next middleware
-    },
+    // (req, res, next) => {
+    //   console.log('Request body:', req.body);   
+    //   next(); // Pass control to the next middleware
+    // },
     (req, res, next) => {
       console.log('FROM GOOGLE CB- Authenticated user:', req.user);  // Check if the user is authenticated
       console.log('FROM GOOGLE CB- Session set after OAuth:', req.session); // Check if the session is properly set here
