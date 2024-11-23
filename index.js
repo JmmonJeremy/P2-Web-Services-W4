@@ -124,7 +124,7 @@ app.use(session({
     httpOnly: true,  // Prevents access to the cookie via JavaScript (XSS protection)
     // sameSite: 'none',
     maxAge: 24 * 60 * 60 * 1000 // 1 day (adjust if needed)
-  } 
+  }   
 }));
 
 // google auth   (Order #2)(OLD ORDER #9) *Passport Middleware (After Session Middleware)
@@ -227,11 +227,11 @@ db.mongoose
     process.exit();
   });
 
-app.use((req, res, next) => {
-  console.log("NODE_ENV:" +process.env.NODE_ENV);
-  console.log("LOGGING SESSION FROM INDEX.JS:", req.session);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("NODE_ENV:" + process.env.NODE_ENV);
+//   console.log("LOGGING FLASH MESSAGE:", req.session.flash);
+//   next();
+// });
 
 // Start the server (Order #10)(OLD ORDER #10)
 const PORT = process.env.PORT || 8080;

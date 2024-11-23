@@ -108,7 +108,7 @@ module.exports = function (passport) {
       },      
       async (req, accessToken, refreshToken, profile, done) => {
         console.log("GITHUB Access Token:" + accessToken + 
-          "\n Google Request body: " + req.body);
+          "\n Google Request body: " + JSON.stringify(req.body));
         
         // console.log("PASSPORT-Session: ", req.session);
          

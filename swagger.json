@@ -5,10 +5,10 @@
     "description": "CreationGoal Process App Personal Project",
     "version": "1.0.0"
   },
-  "host": "p2-web-services-w4.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/": {
@@ -275,6 +275,9 @@
                 "email": {
                   "example": "any"
                 },
+                "password": {
+                  "example": "any"
+                },
                 "googleId": {
                   "example": "any"
                 },
@@ -310,6 +313,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "201": {
             "description": "SUCCESS, POST   a new user"
           },
@@ -457,6 +463,19 @@
         }
       }
     },
+    "/register/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/auth/error/401": {
       "get": {
         "summary": "GETS the 401 page for denial of ---(OAUTH AUTHORIZATION)---",
@@ -471,6 +490,36 @@
             "bearerAuth": []
           }
         ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
       }
     },
     "/auth/logout": {
@@ -494,6 +543,13 @@
         "summary": "GETS all creationGoals associated with the _id of a user - essentially the LOGGED IN HOME ---------- (!!!OAUTH PROTECTED ROUTE!!!)",
         "description": "All creationGoals associated with that user are displayed on the dashboard page.",
         "parameters": [
+          {
+            "name": "registered",
+            "in": "query",
+            "description": "(true) indicates a new user was successfully created, this trigger a post to the dashboard page that the user is redirected to.",
+            "required": false,
+            "type": "boolean"
+          },
           {
             "name": "created",
             "in": "query",
