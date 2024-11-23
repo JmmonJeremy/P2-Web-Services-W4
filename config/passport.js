@@ -2,6 +2,7 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
+const CircularJSON = require('circular-json');
 const { comparePassword } = require('../middleware/password');
 const db = require('../models');
 const User = db.User;
@@ -54,7 +55,7 @@ module.exports = function (passport) {
       },
       async (req, accessToken, refreshToken, profile, done) => {
         console.log("GOOGLE Access Token:" + accessToken + 
-          "\n Google Request body: " + JSON.stringify(req.body, null, 2));
+          "\n Google Request body: " + CircularJSON.stringify(req.body, null, 2));
 
         // const absoluteCallbackURL = `${req.protocol}://${req.get('host')}/auth/google/callback`;
         // console.log("Absolute Callback URL for Google:", absoluteCallbackURL);        
@@ -108,7 +109,7 @@ module.exports = function (passport) {
       },      
       async (req, accessToken, refreshToken, profile, done) => {
         console.log("GITHUB Access Token:" + accessToken + 
-          "\n GitHub Request body: " + JSON.stringify(req.body, null, 2));
+          "\n GitHub Request body: " + CircularJSON.stringify(req, null, 2));
         
         // console.log("PASSPORT-Session: ", req.session);
          
@@ -169,7 +170,7 @@ module.exports = function (passport) {
   // from https://www.passportjs.org/tutorials/google/session/ 
   // done was used to replace cb (short fro callback) in the code
   passport.serializeUser(async (wrappedUser, done) => {
-    // console.log('SerializeUser called with:', wrappedUser);
+    console.log('SerializeUser called with:', wrappedUser);
     // Save only the user ID and accessToken   
     done(null, { id: wrappedUser.user._id, accessToken: wrappedUser.accessToken });   
   });
