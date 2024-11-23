@@ -124,32 +124,32 @@ routes.get(
     // console.log('FROM GITHUB CB- Session set after OAuth:', req.session); // Check if the session is properly set here
     // console.log('FROM GITHUB CB- Set-Cookie header:', res.get('Set-Cookie')); // Check if the session cookie is in the response headers
     passport.authenticate('github',  
-      (err, user, info) => {
-        if (err) {
-          console.error('Error during authentication:', err);
-          return next(err);
-        }
-        if (!user) {
-          // Redirect or render login page with an error message
-          return res.redirect('/?error=Invalid credentials');
-        }
-        // Log in the user
-        // req.logIn(user, (loginErr) => {
-        //   if (loginErr) {
-        //     console.error('Error during login:', loginErr);
-        //     return next(loginErr);
-        //   }
-          console.log('User successfully logged in:', user);
-          // Redirect to the desired page after successful login
-          return res.redirect('/dashboard');
-        });
-      })(req, res, next);
+    //   (err, user, info) => {
+    //     if (err) {
+    //       console.error('Error during authentication:', err);
+    //       return next(err);
+    //     }
+    //     if (!user) {
+    //       // Redirect or render login page with an error message
+    //       return res.redirect('/?error=Invalid credentials');
+    //     }
+    //     // Log in the user
+    //     req.logIn(user, (loginErr) => {
+    //       if (loginErr) {
+    //         console.error('Error during login:', loginErr);
+    //         return next(loginErr);
+    //       }
+    //       console.log('User successfully logged in:', user);
+    //       // Redirect to the desired page after successful login
+    //       return res.redirect('/dashboard');
+    //     });
+    //   })(req, res, next);
     // });
-//     { failureRedirect: '../error/401' }); 
-//     // console.log("res.query: " + CircularJSON.stringify(res, null, 2));
-//     res.status(200).redirect('/dashboard');
-//   }
-// );
+    { failureRedirect: '../error/401' }); 
+    // console.log("res.query: " + CircularJSON.stringify(res, null, 2));
+    res.status(200).redirect('/dashboard');
+  }
+);
 // END ******************************** GITHUB OAUTH *********************************** END//
 
 // @desc    Logout user
