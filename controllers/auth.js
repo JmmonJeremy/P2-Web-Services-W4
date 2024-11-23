@@ -7,11 +7,11 @@ exports.checkGoogleCode = (req, res, next) => { //haven't tested error code on G
   // req.query.code = 'invalidated_code';
   // console.log("req.query changed to: " + JSON.stringify(req.query, null, 2));
   const authorizationCode = req.query.code;
-  console.log("Auth-Session: ", req.session);
+  // console.log("Auth-Session: ", req.session);
   if (authorizationCode) {
     // console.log("REQ Object: " + CircularJSON.stringify(req))
-    console.log("Google conCB- Cookie: connect.sid=" + req.cookies['connect.sid']);
-    console.log("Google conCB- Authorization Code:", authorizationCode);
+    // console.log("Google conCB- Cookie: connect.sid=" + req.cookies['connect.sid']);
+    console.log("Google (controller/auth)- Authorization Code:", authorizationCode);
     // You could save this to the session or use it to fetch the access token
   } else {
     console.log("No authorization code found.");
@@ -29,7 +29,7 @@ exports.checkGithubCode = (req, res, next) => {
   if (authorizationCode) {
     // console.log("REQ Object: " + CircularJSON.stringify(req))
     // console.log("GitHub conCB- A Cookie: connect.sid=" + req.cookies['connect.sid']);
-    console.log("GitHub conCB- Authorization Code:", authorizationCode);
+    console.log("GitHub (controller/auth)- Authorization Code:", authorizationCode);
     // You could save this to the session or use it to fetch the access token
   } else {
     console.log("No authorization code found.");
