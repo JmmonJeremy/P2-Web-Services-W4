@@ -1,12 +1,51 @@
 // google auth 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
-const GoogleTokenStrategy = require('passport-google-token').Strategy; // Import google-token
-const mongoose = require('mongoose');
+const LocalStrategy = require('passport-local').Strategy;
+const { comparePassword } = require('../middleware/password');
 const db = require('../models');
 const User = db.User;
 
+// Each Passport.js strategy constructor (like LocalStrategy, GoogleStrategy, etc.) has a default name associated with it:
+// LocalStrategy → 'local' // GoogleStrategy → 'google' // GitHubStrategy → 'github'
+// When you call passport.use, you register a strategy with a specific name. By default, the name 
+// of the strategy is inferred from the constructor you are using (LocalStrategy in this case).
 module.exports = function (passport) {
+  console.log('Initializing Passport LocalStrategy...');
+
+  // Define Local Strategy
+  passport.use(
+    new LocalStrategy(
+      {
+        usernameField: 'email', // Specify email field for authentication
+        passwordField: 'password', // Specify password field
+      },
+      async (email, password, done) => {
+        console.log('LocalStrategy triggered with email:', email);
+        try {
+          // Find the user by email
+          const user = await User.findOne({ email });
+          if (!user) {
+            return done(null, false, { message: 'Incorrect email.' });
+          }
+
+          // Check if the password matches
+          const isPasswordValid = await comparePassword(password, user.password);
+          if (!isPasswordValid) {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
+          console.log('Authentication successful for user:', user);
+          // If authentication is successful, pass the user object
+          const wrappedUser = { user }; // Wrap user and accessToken together
+          return done(null, wrappedUser);           // Pass wrappedUser to done
+        } catch (err) {
+          return done(err);
+        }
+      }
+    )
+  );
+  console.log('LocalStrategy registered.');
+
   passport.use(
     new GoogleStrategy(
       {
@@ -130,7 +169,7 @@ module.exports = function (passport) {
 
   // from https://www.passportjs.org/tutorials/google/session/ 
   // done was used to replace cb (short fro callback) in the code
- passport.serializeUser(async (wrappedUser, done) => {
+  passport.serializeUser(async (wrappedUser, done) => {
     console.log("Deserializing user ID:", id);
     // Save only the user ID and accessToken   
     done(null, { id: wrappedUser.user._id, accessToken: wrappedUser.accessToken });   

@@ -23,7 +23,7 @@ try {
       accessDenied, // Pass accessDenied flag to the view
   })
 } catch (error) {
-  console.error(error);
+  console.error('Error in rendering login page:', error);
   res.status(500).render('error/500')
 }
 };
