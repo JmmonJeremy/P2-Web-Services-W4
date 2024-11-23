@@ -1,4 +1,13 @@
 {{!--  // google auth  --}}
 <h1>401 Unauthorized</h1>
+{{#if error_msg}}
+  <div class="alert alert-danger">{{error_msg}}</div>
+{{/if}}
+{{#if success_msg}}
+  <div class="alert alert-success">{{success_msg}}</div>
+{{/if}}
+{{#if error}}
+  <div class="alert alert-danger">{{error}}</div>
+{{/if}}
 <p>We're sorry, you were not authorized</p>
 <a href="/" class="btn">Go to Login</a>

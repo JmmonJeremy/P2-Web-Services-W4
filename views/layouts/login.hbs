@@ -13,6 +13,18 @@
 </head>
 <body>
     <h1 class = "title">Welcome to the App that Turns Your Goals into Victorious Creations</h1>
+     {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
+    {{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+    {{/if}}
+    {{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+    {{#if flash.error}}
+    <div class="error">{{flash.error}}</div>
+    {{/if}}
     <div class="container login-container">          
               <div class="insert-content">
                   {{{body}}}

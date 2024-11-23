@@ -1,0 +1,31 @@
+<div class="login register">
+  <form action="/user"  method="POST" >
+    <div class="container">
+      <h2 class="log-title register-title">Register</h2><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &dArr; &nbsp;&nbsp;register your credentials below&nbsp;&nbsp; </small>
+      {{!-- <p>Please fill in this form to create an account.</p> --}}
+      <hr>
+      <div class="input-container">
+        <p>
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" id="email" required>
+        </p>
+        <p>
+          <label for="password"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" id="psw" required>
+        </p>
+        <p>
+          <label for="psw-repeat"><b>Repeat Password</b></label>
+          <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+        </p>
+      </div>
+      <hr class="btm-line">
+
+      <p class="register-agree">By creating an account you agree to our &nbsp;&nbsp;&nbsp;<a href="#">Terms & Privacy</a>.</p>
+      <button type="submit" class="registerbtn">Register</button>
+    </div>
+
+    <div class="container signin">
+      <p class="registered">Already have an account? &nbsp;&nbsp;&nbsp;<a href="#">Sign in</a></p>
+    </div>
+  </form>
+</div>
