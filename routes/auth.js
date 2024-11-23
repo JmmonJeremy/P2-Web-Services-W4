@@ -14,6 +14,7 @@ routes.get('/error/401', (req, res) => {
   res.status(401).render('error/401');
 });
 
+// START **************************** EMAIL & PASSWORD SIGN IN *********************************** START//
 routes.post(
   '/login',
   (req, res, next) => {
@@ -43,10 +44,11 @@ routes.post(
         }
         // console.log('User successfully logged in:', user);
         // Redirect to the desired page after successful login
-        return res.status(200).res.redirect('/dashboard');
+        return res.status(200).redirect('/dashboard');
       });
     })(req, res, next);
   });
+// END **************************** EMAIL & PASSWORD SIGN IN *********************************** END//
 
 // START ******************************** GOOGLE OAUTH *********************************** START//
 // @desc    Auth with Google
@@ -94,7 +96,7 @@ routes.get(
             }
             // console.log('User successfully logged in:', user);
             // Redirect to the desired page after successful login
-            return res.status(200).res.redirect('/dashboard');
+            return res.status(200).redirect('/dashboard');
           });
         })(req, res, next);
       });
@@ -151,7 +153,7 @@ routes.get(
           }
           // console.log('User successfully logged in:', user);
           // Redirect to the desired page after successful login
-          return res.status(200).res.redirect('/dashboard');
+          return res.status(200).redirect('/dashboard');
         });
       })(req, res, next);
     });
