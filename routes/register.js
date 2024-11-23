@@ -1,6 +1,5 @@
 const express = require('express');
 const routes = express.Router();
-const register = require ('../controllers/register.js')
 
 routes.get('/', (req, res) => { // register an email and password
   try {  

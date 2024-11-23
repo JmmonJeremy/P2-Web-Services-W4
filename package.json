@@ -22,6 +22,7 @@
   "homepage": "https://github.com/JmmonJeremy/P2-Web-Services-W4#readme",
   "dependencies": {
     "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
     "circular-json": "^0.5.9",
     "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.7",

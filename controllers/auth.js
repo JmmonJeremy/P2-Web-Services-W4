@@ -7,7 +7,7 @@ exports.checkGoogleCode = (req, res, next) => { //haven't tested error code on G
   // req.query.code = 'invalidated_code';
   // console.log("req.query changed to: " + JSON.stringify(req.query, null, 2));
   const authorizationCode = req.query.code;
-  
+  console.log("Auth-Session: ", req.session);
   if (authorizationCode) {
     // console.log("REQ Object: " + CircularJSON.stringify(req))
     console.log("Google conCB- Cookie: connect.sid=" + req.cookies['connect.sid']);

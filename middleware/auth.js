@@ -15,6 +15,9 @@ module.exports = {
     // Check if `req.user` exists before accessing `id`
     if (req.user) {
       console.log(`Authenticated user: ${req.user.id} |-> ${req.user.displayName}`);
+      // For user email and password sign-in
+      console.log("LOGGED-IN-USER: " + req.user);
+      console.log("isAuthenticated: " + req.isAuthenticated());
     } else {
       console.log("User not found in session");
     }  

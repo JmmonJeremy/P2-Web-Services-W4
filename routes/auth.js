@@ -14,6 +14,40 @@ routes.get('/error/401', (req, res) => {
   res.status(401).render('error/401');
 });
 
+routes.post(
+  '/login',
+  (req, res, next) => {
+    console.log('Request body:', req.body);
+    const { email, password } = req.body;
+
+    // Check if email and password are provided
+    if (!email || !password) {
+        return res.status(400).send('Missing credentials');
+    }
+    next(); // Pass control to the next middleware
+  }, (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) {
+        console.error('Error during authentication:', err);
+        return next(err);
+      }
+      if (!user) {
+        // Redirect or render login page with an error message
+        return res.redirect('/?error=Invalid credentials');
+      }
+      // Log in the user
+      req.logIn(user, (loginErr) => {
+        if (loginErr) {
+          console.error('Error during login:', loginErr);
+          return next(loginErr);
+        }
+        console.log('User successfully logged in:', user);
+        // Redirect to the desired page after successful login
+        return res.redirect('/dashboard');
+      });
+    })(req, res, next);
+  });
+
 // START ******************************** GOOGLE OAUTH *********************************** START//
 // @desc    Auth with Google
 // @route   GET /auth/google - from "Authenticate Requests" section

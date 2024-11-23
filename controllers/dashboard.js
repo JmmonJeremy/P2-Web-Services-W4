@@ -11,6 +11,12 @@ exports.getAllUsersCreationGoals = async (req, res) => {
   // #swagger.responses[201] = { description: 'SUCCESS, GET returned all creationGoals associated with the user, after ADDING another CREATIONGOAL'}      
   // #swagger.responses[401] = { description: 'You are NOT AUTHORIZED to GET the creationGoals'}    
   // #swagger.responses[500] = { description: 'There was an INTERNAL SERVER ERROR while trying to GET all creationGoals associated with the user'}
+   /* #swagger.parameters['registered'] = { 
+  in: 'query',
+  description: '(true) indicates a new user was successfully created, this trigger a post to the dashboard page that the user is redirected to.',
+  required: false,
+  type: 'boolean'
+  } */
   /* #swagger.parameters['created'] = { 
   in: 'query',
   description: '(true) indicates a new creationGoal was successfully created, this trigger a post to the dashboard page that the user is redirected to.',
@@ -30,7 +36,9 @@ exports.getAllUsersCreationGoals = async (req, res) => {
   type: 'boolean'
   } */
 try {  
-  const creationGoals = await CreationGoal.find({ user: req.user.id }).populate('user').lean();    
+  const creationGoals = await CreationGoal.find({ user: req.user.id }).populate('user').lean();  
+  // Check if the `registered` query parameter is true  
+  const registered = req.query.registered === 'true';  
   // Check if the `created` query parameter is true
   const created = req.query.created === 'true';
   // Check if the `created` query parameter is true
@@ -39,7 +47,8 @@ try {
   const deleted = req.query.deleted === 'true';
   res.status(created ? 201 : 200).render('dashboard', {      
     name: `${req.user.firstName} ${req.user.lastName}`,      
-    creationGoals,       
+    creationGoals, 
+    registered, // Pass this to the Handlebars template          
     created, // Pass this to the Handlebars template 
     updated, // Pass this to the Handlebars template 
     deleted, // Pass this to the Handlebars template 
