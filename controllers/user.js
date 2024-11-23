@@ -66,7 +66,7 @@ exports.create = async (req, res) => {
     // #swagger.responses[400] = { description: 'BAD REQUEST your POST was attempted with forbidden entries'}
     // #swagger.responses[412] = { description: 'The PRECONDITION FAILED in the validation of the user data'}
     // #swagger.responses[500] = { description: 'There was an INTERNAL SERVER ERROR while trying to POST the selected user'}   
-  console.log('Request Body:', req.body); // Log the entire request body
+  // console.log('Request Body:', req.body); // Log the entire request body
   // Validate request
   if (!req.body.email) {
     res.status(400).send({ message: 'Content can not be empty!' });

@@ -11,8 +11,6 @@ const User = db.User;
 // When you call passport.use, you register a strategy with a specific name. By default, the name 
 // of the strategy is inferred from the constructor you are using (LocalStrategy in this case).
 module.exports = function (passport) {
-  console.log('Initializing Passport LocalStrategy...');
-
   // Define Local Strategy
   passport.use(
     new LocalStrategy(
@@ -34,7 +32,7 @@ module.exports = function (passport) {
           if (!isPasswordValid) {
             return done(null, false, { message: 'Incorrect password.' });
           }
-          console.log('Authentication successful for user:', user);
+          // console.log('Authentication successful for user:', user);
           // If authentication is successful, pass the user object
           const wrappedUser = { user }; // Wrap user and accessToken together
           return done(null, wrappedUser);           // Pass wrappedUser to done
@@ -44,7 +42,6 @@ module.exports = function (passport) {
       }
     )
   );
-  console.log('LocalStrategy registered.');
 
   passport.use(
     new GoogleStrategy(
@@ -111,7 +108,7 @@ module.exports = function (passport) {
       async (req, accessToken, refreshToken, profile, done) => {
         console.log("GITHUB Access Token:", accessToken);
         
-        console.log("PASSPORT-Session: ", req.session);
+        // console.log("PASSPORT-Session: ", req.session);
          
        
         // const absoluteCallbackURL = `${req.protocol}://${req.get('host')}/auth/github/callback`;
@@ -170,7 +167,7 @@ module.exports = function (passport) {
   // from https://www.passportjs.org/tutorials/google/session/ 
   // done was used to replace cb (short fro callback) in the code
   passport.serializeUser(async (wrappedUser, done) => {
-    console.log('SerializeUser called with:', wrappedUser);
+    // console.log('SerializeUser called with:', wrappedUser);
     // Save only the user ID and accessToken   
     done(null, { id: wrappedUser.user._id, accessToken: wrappedUser.accessToken });   
   });

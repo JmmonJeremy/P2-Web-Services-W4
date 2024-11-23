@@ -18,7 +18,7 @@ routes.get('/error/401', (req, res) => {
 routes.post(
   '/login',
   (req, res, next) => {
-    console.log('Request body:', req.body);
+    console.log('Email Sign-in Request body:', req.body);
     const { email, password } = req.body;
 
     // Check if email and password are provided
@@ -65,17 +65,18 @@ routes.get(
   // #swagger.ignore = true
   // don't send to swagger docs it is not funtional by itself
   '/google/callback', auth.checkGoogleCode, 
-    // show what is in the request body for authentication
-    (req, res, next) => {
-      console.log('Request body:', req.body);   
-      next(); // Pass control to the next middleware
-    },
+    // // show what is in the request body for authentication
+    // (req, res, next) => {
+    //   console.log('Request body:', req.body);   // this is empty here
+    //   next(); // Pass control to the next middleware
+    // },
     (req, res, next) => {
       // console.log('FROM GOOGLE CB- Authenticated user:', req.user);  // Check if the user is authenticated
       // console.log('FROM GOOGLE CB- Session set after OAuth:', req.session); // Check if the session is properly set here
       // console.log('FROM GOOGLE CB- Set-Cookie header:', res.get('Set-Cookie')); // Check if the session cookie is in the response headers
       passport.authenticate('google', 
         (err, user, info) => {
+          console.log('Google Request body:', req.body); 
           if (err) {
             console.error('Error during authentication:', err);
             return next(err);
@@ -88,7 +89,7 @@ routes.get(
 // req.logIn (or its alias req.login) is a Passport.js function. It is added to the req object by Passport.js middleware and is
 // used to establish a login session for a user after successful authentication. It is typically used in custom authentication flows 
 // where you handle authentication manually instead of relying entirely on Passport's built-in passport.authenticate middleware.
-// This allows you to be able to handle login errors in a more controlled way instead of letting Passport handle them automatically.
+// This allows you to be able to handle login errors in a more controlled way instead of letting Passport handle them automatically.          
           req.logIn(user, (loginErr) => {
             if (loginErr) {
               console.error('Error during login:', loginErr);
@@ -121,11 +122,11 @@ routes.get(
   // #swagger.ignore = true
   // don't send to swagger docs it is not funtional by itself
   '/github/callback', auth.checkGithubCode, 
-    // show what is in the request body for authentication
-    (req, res, next) => {
-      console.log('Request body:', req.body);   
-      next(); // Pass control to the next middleware
-    },
+    // // show what is in the request body for authentication
+    // (req, res, next) => {
+    //   console.log('GitHub Request body:', req.body);   
+    //   next(); // Pass control to the next middleware
+    // },
     (req, res, next) => {
     // res.setHeader('Set-Cookie', 'Cookie: connect.sid=s:QYwC5fTkJrq_m3rVFtc5cysImTWlqq0D.+VaqJWa9whZNxMNyUa1KyrreUnyArTQxVmay01hDfO4; Max-Age=24 * 60 * 60 * 1000; path=/; secure=true;');
     // console.log('FROM GITHUB CB- Authenticated user:', req.user);  // Check if the user is authenticated
@@ -133,6 +134,7 @@ routes.get(
     // console.log('FROM GITHUB CB- Set-Cookie header:', res.get('Set-Cookie')); // Check if the session cookie is in the response headers
     passport.authenticate('github',  
       (err, user, info) => {
+        
         if (err) {
           console.error('Error during authentication:', err);
           return next(err);
