@@ -114,7 +114,7 @@ connectDB(); // google auth database add-on database connection
 // Sessions middleware
 // console.log('Initializing session middleware...');
 app.use(session({
-  secret: 'victory-planner',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   // from https://www.npmjs.com/package/connect-mongo
