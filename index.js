@@ -41,10 +41,6 @@ const options = {
       const groupA = pathA.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
       const groupB = pathB.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
     
-      // Prioritize any route with 'register' in it to be at the top of the 'a' group
-      if (pathA.includes('register') && !pathB.includes('register')) return -1;
-      if (!pathA.includes('register') && pathB.includes('register')) return 1;
-
       // Prioritize 'ap' above everything else
       if (groupA.startsWith('ap') && !groupB.startsWith('ap')) return -1;
       if (!groupA.startsWith('ap') && groupB.startsWith('ap')) return 1;
@@ -56,6 +52,9 @@ const options = {
       // Default sorting by group
       if (groupA < groupB) return -1;
       if (groupA > groupB) return 1;
+
+      if (pathA.includes('login') && !pathB.includes('login')) return -1;
+      if (!pathA.includes('login') && pathB.includes('login')) return 1;
     
       // Prioritize creationGoal paths that contain 'user', 'search', 'edit', or 'add'
       const creationGoalsKeywords = ['user', 'search', 'edit', 'add'];
@@ -76,7 +75,6 @@ const options = {
     } 
   },
 };
-
 
 // Body parser
 app.use(express.urlencoded({ extended: false }))
