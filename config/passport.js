@@ -24,7 +24,11 @@ module.exports = function (passport) {
         try {
           // Find the user by email
           // const user = await User.findOne({ email });
-          let user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } }); 
+          // let user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } }); 
+          let user = await User.findOne(
+            { email },
+            { collation: { locale: 'en', strength: 2 } }
+          );
           if (!user) {
             return done(null, false, { message: 'Incorrect email.' });
           }
@@ -75,7 +79,11 @@ module.exports = function (passport) {
         try {
           // Check if the user already exists
           // let user = await User.findOne({ email });  //new for 2 
-          let user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } });        
+          // let user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } });
+          let user = await User.findOne(
+            { email },
+            { collation: { locale: 'en', strength: 2 } }
+          );        
           if (user) {
             // Update existing user with new Google data if necessary
             // user = Object.assign(user, newUser);   //new for 2 
@@ -144,7 +152,11 @@ module.exports = function (passport) {
         try {
           // Check if the user already exists
           // let user = await User.findOne({ email });  //new for 2 
-          let user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } });         
+          // let user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } }); 
+          let user = await User.findOne(
+            { email },
+            { collation: { locale: 'en', strength: 2 } }
+          );        
           if (user) {
             // Update existing user with new GitHub data if necessary
             

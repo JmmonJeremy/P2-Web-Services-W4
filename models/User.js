@@ -6,7 +6,7 @@ module.exports = (mongoose) => {
       {
         googleId: { type: String, },
         githubId: { type: String, },
-        email: { type: String, unique: true, required: true, },
+        email: { type: String, unique: true, required: true, collation: { locale: 'en', strength: 2 } },
         password: { type: String, unique: true, sparse: true, },
         displayName: { type: String, required: true, default: "CreationGoal User"},
         firstName: { type: String, required: true, default: "CreationGoal"},
