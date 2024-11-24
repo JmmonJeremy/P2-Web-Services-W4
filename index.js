@@ -46,8 +46,8 @@ const options = {
        if (!groupA.startsWith('ap') && groupB.startsWith('ap')) return 1;
 
       // Prioritize 'ap' above everything else
-      if (groupA.startsWith('') && !groupB.startsWith('')) return -1;
-      if (!groupA.startsWith('') && groupB.startsWith('')) return 1;
+      if (groupA.startsWith('/ ') && !groupB.startsWith('/ ')) return -1;
+      if (!groupA.startsWith('/ ') && groupB.startsWith('/ ')) return 1;
     
       // Prioritize 'r' above everything else
       if (groupA.startsWith('r') && !groupB.startsWith('r')) return -1;
