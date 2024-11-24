@@ -328,30 +328,33 @@ Content-Type: application/json
 POST https://p2-web-services-w4.onrender.com/user
 Content-Type: application/json
 
-{  
-  "_id": "67386b8ff5fe14716ce2dd9a",
-  "email": "demo@gmail.com",
+{ 
+  "_id": "6742bd3050bd7c268d21c76b"  , 
+  "email": "demolition@gmail.com",
+  "password": "sneaky1",
   "displayName": "Demo Man",
   "firstName": "Demo",
   "lastName": "Showman", 
-  "image": "https://ibb.co/jTH610t",
-  "bio": "I am a self made Demo man."
+  "image": "https://ibb.co/jTH610t"  
 }
 ### updating a user with a post
-PUT https://p2-web-services-w4.onrender.com/user/674281806d2f4b283f91f222
+PUT https://p2-web-services-w4.onrender.com/user/6742bd3050bd7c268d21c76b
 Content-Type: application/json
 Content-Type: application/json
 
 {
-  "email": "demoWoman@gmail.com",
-  "displayName": "Demo Woman",
-  "firstName": "Demo",  
-  "lastName": "Showoman",  
-  "image": "https://ibb.co/jTH610t",
-  "bio": "I am a self made Demo woman."
+  "email": "demolition@gmail.coml",
+  "displayName": "Updated displayName",
+  "firstName": "firstName",
+  "lastName": "lastName",
+  "image": "Updated image",
+  "bio": "Updated bio",
+  "location": "Updated location",
+  "company": "Updated company",
+  "website": "Updated website"
 }
 ### removing a user with delete
-DELETE https://p2-web-services-w4.onrender.com/user/674281806d2f4b283f91f222
+DELETE https://p2-web-services-w4.onrender.com/user/6742bd3050bd7c268d21c76b
 Content-Type: application/json
 # # # CREATIONGOALS DATABASE # # # PRODUCTION ROUTES  # # # START FOR RENDER  # # # # # # # # # # # # # # # # # # # # # # # # # #
 // RETRIEVING WITH GET FOR CREATIONGOALS

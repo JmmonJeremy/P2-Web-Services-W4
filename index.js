@@ -40,6 +40,10 @@ const options = {
       // Extract the first segment after the '/'
       const groupA = pathA.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
       const groupB = pathB.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
+
+      // Make the 'r' group equal to routes with no letters (empty group or missing first letter)
+      if (groupA === 'r' && groupB === '') return 0;
+      if (groupA === '' && groupB === 'r') return 0;
     
       // Prioritize 'ap' above everything else
       if (groupA.startsWith('ap') && !groupB.startsWith('ap')) return -1;
