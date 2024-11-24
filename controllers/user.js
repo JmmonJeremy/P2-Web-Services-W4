@@ -99,7 +99,8 @@ exports.create = async (req, res) => {
       };
   
       // Check if the user already exists
-      let user = await users.findOne({ email: req.body.email }); 
+      // let user = await users.findOne({ email: req.body.email });     
+      let user = await users.findOne({ email: { $regex: new RegExp(`^${req.body.email}$`, 'i') } });      
           
       if (user) {      
         Object.keys(incomingUser).forEach((key) => { 
@@ -108,14 +109,14 @@ exports.create = async (req, res) => {
         // Save user in the database
         await user.save();
         console.log('User successfully updated:', user);
-        return res.status(200).redirect('/dashboard?updated=true');  // Send response after update    
+        return res.status(200).redirect('/?updated=true');  // Send response after update    
   
       } else {
         // Create a new user
         user = new users(incomingUser); 
         await user.save();     
         console.log('User successfully created:', user);
-        return res.status(201).redirect('/dashboard?registered=true');  // Send response after creation
+        return res.status(201).redirect('/?registered=true');  // Send response after creation
       }
   
     } catch (err) {
