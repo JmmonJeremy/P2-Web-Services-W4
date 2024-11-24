@@ -317,14 +317,14 @@ DELETE https://p2-web-services-w4.onrender.com/profiles/DemoWoman
 # # # USERS DATABASE # # # DEVELOPMENT ROUTES  # # # START FOR LOCALHOST  # # # # # # # # # # # # # # # # # # # # # # # # # #
 // MAIN 2 TYPES OF GET REQUESTS FOR USERS ************************************************************
 ###
-### getting list of all profiles (ordered by username alphabetically)
+### getting list of all user (ordered by username alphabetically)
 GET https://p2-web-services-w4.onrender.com/user
 Content-Type: application/json
-### getting 1 profile by username
+### getting 1 user by username
 GET https://p2-web-services-w4.onrender.com/user/673c4e9fd5aa0feb6b515bd3
 Content-Type: application/json
 // 3 WAYS OF ALTERING DATA FOR USERS ******************************************************************
-### creating a profile with a post
+### creating a user with a post
 POST https://p2-web-services-w4.onrender.com/user
 Content-Type: application/json
 
@@ -337,7 +337,7 @@ Content-Type: application/json
   "image": "https://ibb.co/jTH610t",
   "bio": "I am a self made Demo man."
 }
-### updating a profile with a post
+### updating a user with a post
 PUT https://p2-web-services-w4.onrender.com/user/67386b8ff5fe14716ce2dd9a
 Content-Type: application/json
 
@@ -349,7 +349,7 @@ Content-Type: application/json
   "image": "https://ibb.co/jTH610t",
   "bio": "I am a self made Demo woman."
 }
-### removing a profile with delete
+### removing a user with delete
 DELETE https://p2-web-services-w4.onrender.com/user/67386b8ff5fe14716ce2dd9a
 # # # CREATIONGOALS DATABASE # # # PRODUCTION ROUTES  # # # START FOR RENDER  # # # # # # # # # # # # # # # # # # # # # # # # # #
 // RETRIEVING WITH GET FOR CREATIONGOALS
