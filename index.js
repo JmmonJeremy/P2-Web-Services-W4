@@ -48,6 +48,10 @@ const options = {
       // Prioritize 'd' above 'c' group
       if (groupA.startsWith('d') && !groupB.startsWith('d') && groupB.startsWith('c')) return -1;
       if (!groupA.startsWith('d') && groupB.startsWith('d') && groupA.startsWith('c')) return 1;
+      
+      if (groupA.startsWith('r') && !groupB.startsWith('r') && groupB.startsWith('d')) return -1;
+      if (!groupA.startsWith('r') && groupB.startsWith('r') && groupA.startsWith('d')) return 1;
+
     
       // Default sorting by group
       if (groupA < groupB) return -1;
