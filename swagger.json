@@ -5,10 +5,10 @@
     "description": "CreationGoal Process App Personal Project",
     "version": "1.0.0"
   },
-  "host": "p2-web-services-w4.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/": {
@@ -485,30 +485,21 @@
     },
     "/auth/login": {
       "post": {
-        "summary": "Registers a user ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---",
-        "description": "Special route created for posting the registration of new users for password sign-in capability.",
+        "summary": "Signs a user in ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---",
+        "description": "Special route created for posting the sign-in of new users through a password sign-in.",
         "parameters": [
           {
             "name": "body",
             "in": "body",
-            "description": "Fields to fill out.   \n(Additional OPTIONAL FIELDS you can add to the BODY BELOW = 'creationNumber':, 'creationDate':, & 'status':)",
-            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "email": {
-                  "type": "string",
-                  "example": "email@email.com"
+                  "example": "any"
                 },
                 "password": {
-                  "type": "password",
-                  "example": "password123"
-                },
-                "repeat password": {
-                  "type": "string",
-                  "example": "password123"
-                },
-                "required": "email"
+                  "example": "any"
+                }
               }
             }
           }

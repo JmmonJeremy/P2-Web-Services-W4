@@ -7,16 +7,19 @@ const CircularJSON = require('circular-json');
 
 // Custom route for handling authentication failureRedirect
 routes.get('/error/401', (req, res) => {
-  /* #swagger.security = [{ "bearerAuth": [] }] */
-  /* #swagger.summary = "GETS the 401 page for denial of ---(OAUTH AUTHORIZATION)---" */ 
-  /* #swagger.description = 'Special page created for UNAUTHORIZED error events to redirect users to.' */ 
-  // Render the error page on authentication failure
+    /* #swagger.summary = "GETS the 401 page for denial of ---(OAUTH AUTHORIZATION DENIAL PAGE)---" */ 
+    /* #swagger.description = 'Special page created for UNAUTHORIZED error events to redirect users to.' */ 
+    // Render the error page on authentication failure
+
   res.status(401).render('error/401');
 });
 
 // START **************************** EMAIL & PASSWORD SIGN IN *********************************** START//
 routes.post(
   '/login',
+    /* #swagger.summary = "Signs a user in ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---" */ 
+    /* #swagger.description = 'Special route created for posting the sign-in of new users through a password sign-in.' */ 
+
   (req, res, next) => {
     console.log('Email Sign-in Request body:', req.body);
     const { email, password } = req.body;
