@@ -6,19 +6,18 @@ const auth = require ('../controllers/auth.js')
 const CircularJSON = require('circular-json');
 
 // Custom route for handling authentication failureRedirect
-routes.get('/error/401', (req, res) => {    
-      /* #swagger.summary = "GETS the 401 page for denial of ---(OAUTH AUTHORIZATION DENIAL PAGE)---" */ 
-      /* #swagger.description = 'Special page created for UNAUTHORIZED error events to redirect users to.' */ 
+routes.get('/error/401', (req, res) => {
+  /* #swagger.security = [{ "bearerAuth": [] }] */
+  /* #swagger.summary = "GETS the 401 page for denial of ---(OAUTH AUTHORIZATION)---" */ 
+  /* #swagger.description = 'Special page created for UNAUTHORIZED error events to redirect users to.' */ 
   // Render the error page on authentication failure
   res.status(401).render('error/401');
 });
 
 // START **************************** EMAIL & PASSWORD SIGN IN *********************************** START//
 routes.post(
-  '/login',  
+  '/login',
   (req, res, next) => {
-      /* #swagger.summary = "Registers a user ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---" */ 
-      /* #swagger.description = 'Special route created for posting the registration of new users for password sign-in capability.' */    
     console.log('Email Sign-in Request body:', req.body);
     const { email, password } = req.body;
 
@@ -43,31 +42,6 @@ routes.post(
           console.error('Error during login:', loginErr);
           return next(loginErr);
         }
-          /* #swagger.parameters['body'] = {
-      in: 'body',
-      description: 'Fields to update',
-      required: true,
-      '@schema': {
-        "type": "object",
-        "properties": {         
-          "email": {
-            "type": "string",
-            "example": "email@email.com"
-          },
-          "password": {
-            "type": "string",
-            "format": "password",
-            "example": "password123"
-          },
-          "repeatPassword": {
-            "type": "string",
-            "example": "password123"
-          }              
-        },
-        "required": ["email"]
-      }
-    }
-*/
         // console.log('User successfully logged in:', user);
         // Redirect to the desired page after successful login
         return res.status(200).redirect('/dashboard');
@@ -180,7 +154,6 @@ routes.get(
             console.error('Error during login:', loginErr);
             return next(loginErr);
           }
-          console.log('FROM GITHUB CB- Session set after OAuth:', req.session);
           // console.log('GitHub Request body:', req.body);  // this is empty here 
           // console.log('User successfully logged in:', user);
           // Redirect to the desired page after successful login
