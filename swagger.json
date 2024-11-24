@@ -34,12 +34,7 @@
           "500": {
             "description": "There was an INTERNAL SERVER ERROR while trying to get AUTHORIZATION for you."
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/api-docs": {
@@ -465,7 +460,8 @@
     },
     "/register/": {
       "get": {
-        "description": "",
+        "summary": "Get the page for registering a user ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---",
+        "description": "Special page created for registering new users for password sign-in capability.",
         "responses": {
           "200": {
             "description": "OK"
@@ -478,36 +474,41 @@
     },
     "/auth/error/401": {
       "get": {
-        "summary": "GETS the 401 page for denial of ---(OAUTH AUTHORIZATION)---",
+        "summary": "GETS the 401 page for denial of ---(OAUTH AUTHORIZATION DENIAL PAGE)---",
         "description": "Special page created for UNAUTHORIZED error events to redirect users to.",
         "responses": {
           "401": {
             "description": "Unauthorized"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/auth/login": {
       "post": {
-        "description": "",
+        "summary": "Registers a user ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---",
+        "description": "Special route created for posting the registration of new users for password sign-in capability.",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "Fields to fill out.   \n(Additional OPTIONAL FIELDS you can add to the BODY BELOW = 'creationNumber':, 'creationDate':, & 'status':)",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "email@email.com"
                 },
                 "password": {
-                  "example": "any"
-                }
+                  "type": "password",
+                  "example": "password123"
+                },
+                "repeat password": {
+                  "type": "string",
+                  "example": "password123"
+                },
+                "required": "email"
               }
             }
           }

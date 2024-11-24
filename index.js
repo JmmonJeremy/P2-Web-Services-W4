@@ -48,14 +48,24 @@ const options = {
       // Prioritize 'd' above 'c' group
       if (groupA.startsWith('d') && !groupB.startsWith('d') && groupB.startsWith('c')) return -1;
       if (!groupA.startsWith('d') && groupB.startsWith('d') && groupA.startsWith('c')) return 1;
-      
-      if (groupA.startsWith('r') && !groupB.startsWith('r') && groupB.startsWith('d')) return -1;
-      if (!groupA.startsWith('r') && groupB.startsWith('r') && groupA.startsWith('d')) return 1;
-
     
       // Default sorting by group
       if (groupA < groupB) return -1;
       if (groupA > groupB) return 1;
+
+      // Prioritize 'login' routes at the top of the 'a' group
+      if (pathA.includes('login') && !pathB.includes('login')) return -1;
+      if (!pathA.includes('login') && pathB.includes('login')) return 1;
+
+      // Sort routes in the 'r' group to be above 'au' routes in the 'a' group
+      if (groupA === 'a' && groupB === 'a') {
+        if (pathA.startsWith('/a/au') && !pathB.startsWith('/a/au')) return 1; // 'au' routes go below 'r' routes
+        if (pathB.startsWith('/a/au') && !pathA.startsWith('/a/au')) return -1;
+      }
+
+      // Prioritize 'r' group above 'au' routes in 'a' group
+      if (groupA === 'r' && groupB === 'a' && pathA.startsWith('/r') && pathB.startsWith('/a/au')) return -1;
+      if (groupA === 'a' && groupB === 'r' && pathA.startsWith('/a/au') && pathB.startsWith('/r')) return 1;
     
       // Prioritize creationGoal paths that contain 'user', 'search', 'edit', or 'add'
       const creationGoalsKeywords = ['user', 'search', 'edit', 'add'];

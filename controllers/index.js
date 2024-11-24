@@ -1,8 +1,7 @@
 
 
 // Home page sign on checking Method
-exports.grantAccess = (req, res) => {
-  /* #swagger.security = [{ "bearerAuth": [] }] */
+exports.grantAccess = (req, res) => { 
   /* #swagger.summary = GETS the HOME page ---------- (!!!OAUTH DOORWAY ROUTE!!!)*/  
   /* #swagger.description = 'For the HOME page if you are NOT LOGGED IN it loads the LOGIN page OR if you are LOGGED IN it loads the DASHBOARD.<br>
   <b>The outcome will only reflect if you are signed in through Google or GitHub OAuth. Changing the boolean below has no direct effect.</b>' */ 

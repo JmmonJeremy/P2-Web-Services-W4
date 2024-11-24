@@ -6,10 +6,9 @@ const auth = require ('../controllers/auth.js')
 const CircularJSON = require('circular-json');
 
 // Custom route for handling authentication failureRedirect
-routes.get('/error/401', (req, res) => {
-  /* #swagger.security = [{ "bearerAuth": [] }] */
-  /* #swagger.summary = "GETS the 401 page for denial of ---(OAUTH AUTHORIZATION)---" */ 
-  /* #swagger.description = 'Special page created for UNAUTHORIZED error events to redirect users to.' */ 
+routes.get('/error/401', (req, res) => {    
+      /* #swagger.summary = "GETS the 401 page for denial of ---(OAUTH AUTHORIZATION DENIAL PAGE)---" */ 
+      /* #swagger.description = 'Special page created for UNAUTHORIZED error events to redirect users to.' */ 
   // Render the error page on authentication failure
   res.status(401).render('error/401');
 });
@@ -17,6 +16,34 @@ routes.get('/error/401', (req, res) => {
 // START **************************** EMAIL & PASSWORD SIGN IN *********************************** START//
 routes.post(
   '/login',
+      /* #swagger.summary = "Registers a user ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---" */ 
+      /* #swagger.description = 'Special route created for posting the registration of new users for password sign-in capability.' */ 
+      /* #swagger.parameters['body'] = {
+            in: 'body',
+            description: 'Fields to fill out.
+                         \n(Additional OPTIONAL FIELDS you can add to the BODY BELOW = \"creationNumber\":, \"creationDate\":, & \"status\":)',
+            required: true,
+            '@schema': {
+              "type": "object",
+              "properties": {         
+                "email": {
+                  "type": "string",
+                  "example": "email@email.com"
+                },
+                "password": {
+                  "type": "password",
+                  "example": "password123"
+                },
+                "repeat password": {
+                  "type": "string",
+                  "example": "password123"
+                },
+               
+              "required": "email"
+            }
+          }
+        }
+      */  
   (req, res, next) => {
     console.log('Email Sign-in Request body:', req.body);
     const { email, password } = req.body;
