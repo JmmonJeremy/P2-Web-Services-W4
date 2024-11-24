@@ -41,9 +41,9 @@ const options = {
       const groupA = pathA.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
       const groupB = pathB.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
 
-      // Make the 'r' group equal to routes with no letters (empty group or missing first letter)
-      if (groupA === 'r' && groupB === '') return 0;
-      if (groupA === '' && groupB === 'r') return 0;
+      // Prioritize 'r' group above 'a' group but below 'ap' routes
+      if (groupA === 'r' && groupB === 'a') return -1;  // 'r' comes before 'a' unless 'a' starts with 'ap'
+      if (groupA === 'a' && groupB === 'r') return 1;   // 'a' comes after 'r'
     
       // Prioritize 'ap' above everything else
       if (groupA.startsWith('ap') && !groupB.startsWith('ap')) return -1;

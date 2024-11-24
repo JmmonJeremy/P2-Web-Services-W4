@@ -343,7 +343,8 @@ Content-Type: application/json
 Content-Type: application/json
 
 {
-  "email": "demolition@gmail.coml",
+  "email": "demolition@gmail.com",
+  "email": "demolition@gmail.com",
   "displayName": "Updated displayName",
   "firstName": "firstName",
   "lastName": "lastName",
