@@ -586,6 +586,21 @@ div.login input {
   color: white !important;
 }
 
+div.login input.email[name="email"] {
+  font-size: 14px !important;
+}
+
+/* Ensures font size remains consistent on focus */
+div.login input.email[name="email"]:focus {
+  font-size: 14px !important; /* Ensure font size is the same on focus */ 
+  width: 60% !important; 
+}
+
+/* Ensures font size remains consistent after losing focus */
+div.login input.email[name="email"]:not(:focus) {
+  font-size: 14px !important;   
+}
+
 div.register div.input-container {
   width: 92%;
   margin-top: -55px;

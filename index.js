@@ -45,8 +45,9 @@ const options = {
        if (groupA.startsWith('ap') && !groupB.startsWith('ap')) return -1;
        if (!groupA.startsWith('ap') && groupB.startsWith('ap')) return 1;
 
-      // Prioritize 'ap' above everything else
-      if (pathA === '/' && pathB !== '/') return -1; // Prioritize '/' above all other routes
+      // Identify and prioritize the `/` route
+      if (pathA === '/' && pathB !== '/') return -1;
+      if (pathA !== '/' && pathB === '/') return 1;
     
       // Prioritize 'r' above everything else
       if (groupA.startsWith('r') && !groupB.startsWith('r')) return -1;
