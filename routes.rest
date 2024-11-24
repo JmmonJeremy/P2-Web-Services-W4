@@ -328,8 +328,7 @@ Content-Type: application/json
 POST https://p2-web-services-w4.onrender.com/user
 Content-Type: application/json
 
-{ 
-  "_id": "6742bd3050bd7c268d21c76b"  , 
+{   
   "email": "demolition@gmail.com",
   "password": "sneaky1",
   "displayName": "Demo Man",
@@ -338,13 +337,11 @@ Content-Type: application/json
   "image": "https://ibb.co/jTH610t"  
 }
 ### updating a user with a post
-PUT https://p2-web-services-w4.onrender.com/user/6742bd3050bd7c268d21c76b
-Content-Type: application/json
+PUT https://p2-web-services-w4.onrender.com/user/6742c518e6d5f27c3ac920f6
 Content-Type: application/json
 
 {
-  "email": "demolition@gmail.com",
-  "email": "demolition@gmail.com",
+  "email": "demolition@gmail.com",  
   "displayName": "Updated displayName",
   "firstName": "firstName",
   "lastName": "lastName",
@@ -355,7 +352,7 @@ Content-Type: application/json
   "website": "Updated website"
 }
 ### removing a user with delete
-DELETE https://p2-web-services-w4.onrender.com/user/6742bd3050bd7c268d21c76b
+DELETE https://p2-web-services-w4.onrender.com/user/6742c518e6d5f27c3ac920f6
 Content-Type: application/json
 # # # CREATIONGOALS DATABASE # # # PRODUCTION ROUTES  # # # START FOR RENDER  # # # # # # # # # # # # # # # # # # # # # # # # # #
 // RETRIEVING WITH GET FOR CREATIONGOALS

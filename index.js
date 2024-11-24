@@ -40,14 +40,14 @@ const options = {
       // Extract the first segment after the '/'
       const groupA = pathA.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
       const groupB = pathB.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
-
-      // Prioritize 'r' group above 'a' group but below 'ap' routes
-      if (groupA === 'r' && groupB === 'a') return -1;  // 'r' comes before 'a' unless 'a' starts with 'ap'
-      if (groupA === 'a' && groupB === 'r') return 1;   // 'a' comes after 'r'
     
       // Prioritize 'ap' above everything else
       if (groupA.startsWith('ap') && !groupB.startsWith('ap')) return -1;
       if (!groupA.startsWith('ap') && groupB.startsWith('ap')) return 1;
+      
+      // Prioritize 'r' above all other groups except 'ap'
+      if (groupA === 'r' && groupB !== 'ap') return -1;
+      if (groupA !== 'ap' && groupB === 'r') return 1;
     
       // Prioritize 'd' above 'c' group
       if (groupA.startsWith('d') && !groupB.startsWith('d') && groupB.startsWith('c')) return -1;
