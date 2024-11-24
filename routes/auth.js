@@ -15,36 +15,35 @@ routes.get('/error/401', (req, res) => {
 
 // START **************************** EMAIL & PASSWORD SIGN IN *********************************** START//
 routes.post(
-  '/login',
+  '/login',  
+  (req, res, next) => {
       /* #swagger.summary = "Registers a user ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---" */ 
       /* #swagger.description = 'Special route created for posting the registration of new users for password sign-in capability.' */ 
-      /* #swagger.parameters['body'] = {
-            in: 'body',
-            description: 'Fields to fill out.
-                         \n(Additional OPTIONAL FIELDS you can add to the BODY BELOW = \"creationNumber\":, \"creationDate\":, & \"status\":)',
-            required: true,
-            '@schema': {
-              "type": "object",
-              "properties": {         
-                "email": {
-                  "type": "string",
-                  "example": "email@email.com"
-                },
-                "password": {
-                  "type": "password",
-                  "example": "password123"
-                },
-                "repeat password": {
-                  "type": "string",
-                  "example": "password123"
-                },
-               
-              "required": "email"
-            }
-          }
-        }
-      */  
-  (req, res, next) => {
+     /* #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Fields to update',
+      required: true,
+      '@schema': {
+        "type": "object",
+        "properties": {         
+          "email": {
+            "type": "string",
+            "example": "email@email.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "password123"
+          },
+          "repeatPassword": {
+            "type": "string",
+            "example": "password123"
+          }              
+        },
+        "required": ["email"]
+      }
+    }
+*/
     console.log('Email Sign-in Request body:', req.body);
     const { email, password } = req.body;
 
@@ -181,6 +180,7 @@ routes.get(
             console.error('Error during login:', loginErr);
             return next(loginErr);
           }
+          console.log('FROM GITHUB CB- Session set after OAuth:', req.session);
           // console.log('GitHub Request body:', req.body);  // this is empty here 
           // console.log('User successfully logged in:', user);
           // Redirect to the desired page after successful login
