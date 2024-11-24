@@ -41,6 +41,10 @@ const options = {
       const groupA = pathA.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
       const groupB = pathB.split('/')[1]?.toLowerCase() || ''; // Default to '' if no segment
     
+      // Prioritize any route with 'register' in it to be at the top of the 'a' group
+      if (pathA.includes('register') && !pathB.includes('register')) return -1;
+      if (!pathA.includes('register') && pathB.includes('register')) return 1;
+
       // Prioritize 'ap' above everything else
       if (groupA.startsWith('ap') && !groupB.startsWith('ap')) return -1;
       if (!groupA.startsWith('ap') && groupB.startsWith('ap')) return 1;
@@ -52,24 +56,6 @@ const options = {
       // Default sorting by group
       if (groupA < groupB) return -1;
       if (groupA > groupB) return 1;
-
-      if (pathA.includes('login') && !pathB.includes('login')) return -1;
-      if (!pathA.includes('login') && pathB.includes('login')) return 1;
-
-      // Sort 'r' group routes above any 'au' routes in 'a' group
-      if (groupA === 'r' && groupB === 'a' && pathA.startsWith('/r') && pathB.startsWith('/a/au')) return -1;
-      if (groupA === 'a' && groupB === 'r' && pathA.startsWith('/a/au') && pathB.startsWith('/r')) return 1;
-
-      // Prioritize 'r' group above all 'a' group 'au' routes
-      if (groupA === 'r' && groupB === 'a') {
-        if (pathA.startsWith('/r') && pathB.startsWith('/a/au')) return -1;
-      }
-
-      // Prioritize 'r' routes above 'au' routes within 'a' group
-      if (groupA === 'a' && groupB === 'a') {
-        if (pathA.startsWith('/a/au') && !pathB.startsWith('/a/au')) return 1; // 'au' routes go below other 'a' routes
-        if (!pathA.startsWith('/a/au') && pathB.startsWith('/a/au')) return -1;
-      }
     
       // Prioritize creationGoal paths that contain 'user', 'search', 'edit', or 'add'
       const creationGoalsKeywords = ['user', 'search', 'edit', 'add'];
@@ -90,6 +76,7 @@ const options = {
     } 
   },
 };
+
 
 // Body parser
 app.use(express.urlencoded({ extended: false }))
