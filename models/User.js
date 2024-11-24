@@ -4,8 +4,8 @@ module.exports = (mongoose) => {
     'User',
     mongoose.Schema(
       {
-        googleId: { type: String, unique: true, sparse: true, },
-        githubId: { type: String, unique: true, sparse: true, },
+        googleId: { type: String, },
+        githubId: { type: String, },
         email: { type: String, unique: true, required: true, },
         password: { type: String, unique: true, sparse: true, },
         displayName: { type: String, required: true, default: "CreationGoal User"},
