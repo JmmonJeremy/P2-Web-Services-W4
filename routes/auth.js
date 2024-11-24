@@ -19,7 +19,31 @@ routes.post(
   '/login',
     /* #swagger.summary = "Signs a user in ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---" */ 
     /* #swagger.description = 'Special route created for posting the sign-in of new users through a password sign-in.' */ 
-
+    /* #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Fields to update',
+      required: true,
+      '@schema': {
+        "type": "object",
+        "properties": {         
+          "email": {
+            "type": "string",
+            "example": "email@email.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "password123"
+          },
+          "repeatPassword": {
+            "type": "string",
+            "example": "password123"
+          }              
+        },
+        "required": ["email"]
+        }
+      }
+    */
   (req, res, next) => {
     console.log('Email Sign-in Request body:', req.body);
     const { email, password } = req.body;

@@ -491,16 +491,28 @@
           {
             "name": "body",
             "in": "body",
+            "description": "Fields to update",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "email@email.com"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "format": "password",
+                  "example": "password123"
+                },
+                "repeatPassword": {
+                  "type": "string",
+                  "example": "password123"
                 }
-              }
+              },
+              "required": [
+                "email"
+              ]
             }
           }
         ],
