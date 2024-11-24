@@ -23,7 +23,8 @@ module.exports = function (passport) {
         console.log('LocalStrategy triggered with email:', email);
         try {
           // Find the user by email
-          const user = await User.findOne({ email });
+          // const user = await User.findOne({ email });
+          let user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } }); 
           if (!user) {
             return done(null, false, { message: 'Incorrect email.' });
           }
@@ -73,7 +74,8 @@ module.exports = function (passport) {
         //   let user = await User.findOne({ googleId: profile.id })
         try {
           // Check if the user already exists
-          let user = await User.findOne({ email });  //new for 2         
+          // let user = await User.findOne({ email });  //new for 2 
+          let user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } });        
           if (user) {
             // Update existing user with new Google data if necessary
             // user = Object.assign(user, newUser);   //new for 2 
@@ -141,7 +143,8 @@ module.exports = function (passport) {
     
         try {
           // Check if the user already exists
-          let user = await User.findOne({ email });  //new for 2         
+          // let user = await User.findOne({ email });  //new for 2 
+          let user = await User.findOne({ email: { $regex: new RegExp(`^${email}$`, 'i') } });         
           if (user) {
             // Update existing user with new GitHub data if necessary
             
