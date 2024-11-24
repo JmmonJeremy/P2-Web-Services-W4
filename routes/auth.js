@@ -18,7 +18,7 @@ routes.post(
   '/login',  
   (req, res, next) => {
       /* #swagger.summary = "Registers a user ---(AUTH DOORWAY FOR PASSWORD SIGN IN)---" */ 
-      /* #swagger.description = 'Special route created for posting the registration of new users for password sign-in capability.' */   
+      /* #swagger.description = 'Special route created for posting the registration of new users for password sign-in capability.' */    
     console.log('Email Sign-in Request body:', req.body);
     const { email, password } = req.body;
 
@@ -43,6 +43,31 @@ routes.post(
           console.error('Error during login:', loginErr);
           return next(loginErr);
         }
+          /* #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Fields to update',
+      required: true,
+      '@schema': {
+        "type": "object",
+        "properties": {         
+          "email": {
+            "type": "string",
+            "example": "email@email.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "password123"
+          },
+          "repeatPassword": {
+            "type": "string",
+            "example": "password123"
+          }              
+        },
+        "required": ["email"]
+      }
+    }
+*/
         // console.log('User successfully logged in:', user);
         // Redirect to the desired page after successful login
         return res.status(200).redirect('/dashboard');
