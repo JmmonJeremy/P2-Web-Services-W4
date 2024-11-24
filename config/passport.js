@@ -54,7 +54,7 @@ module.exports = function (passport) {
         failureRedirect: '/dashboard?accessDenied=true', // Redirect with error flag
       },
       async (req, accessToken, refreshToken, profile, done) => {
-        console.log("GOOGLE Access Token:" + accessToken);
+        // console.log("GOOGLE Access Token:" + accessToken); // shown in serialization log
 
         // const absoluteCallbackURL = `${req.protocol}://${req.get('host')}/auth/google/callback`;
         // console.log("Absolute Callback URL for Google:", absoluteCallbackURL);        
@@ -107,7 +107,7 @@ module.exports = function (passport) {
         failureRedirect: '/dashboard?accessDenied=true', // Redirect with error flag
       },      
       async (req, accessToken, refreshToken, profile, done) => {
-        console.log("GITHUB Access Token:" + accessToken);
+        // console.log("GITHUB Access Token:" + accessToken);  // shown in serialization log
         
         // console.log("PASSPORT-Session: ", req.session);
          
