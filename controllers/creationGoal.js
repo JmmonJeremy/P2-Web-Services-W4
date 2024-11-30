@@ -153,7 +153,7 @@ exports.getCreationGoalById= async (req, res) => {
       return res.render('error/404')
     }
 
-    if (creationGoal.user._id != req.user.id && creationGoal.status == 'private') {
+    if (creationGoal.user._id != req.user.id && creationGoal.status == 'Private') {
       res.status(404).render('error/404')
     } else {
       res.status(200).render('creationGoals/show', {
